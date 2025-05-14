@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Array and console practice</title>
+</head>
+<body style="background-color: #021E5d; color:white; padding:20px;">
+    <h1>My array practice</h1>
+
+    <h3>This page implemented the use of array and it's different methods, the result of the click button is displayed on  the page and also on the console</h3>
+
+    <ul>
+        <li>the first stage is where I displayed an already existing array in fruits = [<mark id="arr"></mark>]
+        </li><br>
+        <button type="button" onclick="arr()">show array</button><br><br>
+        
+        <li>the second stage is where I display how to add an item to an already existing array in fruits
+             = [<mark id="push"></mark>]</li><br>
+        <button type="button" onclick="pushArr()">push item</button>
+        <br><br>
+
+        <li>the third stage is where I display how to remove items startimg from the first item of the array
+             = [<mark id="shift"></mark>]</li><br>
+        <button type="button" onclick="shiftArr()">remove item</button><br><br>
+
+        <li>the fourth stage is where I loop through the initial array of fruits = [<mark id="loop"></mark>]
+        </li><br>
+        <button type="button" onclick="loopFruits()">show loop</button><br><br>
+
+        <li>the fifth stage is where I use the splice() method to add more items to the array
+             = [<mark id="splice"></mark>]</li><br>
+        <button type="button" onclick="spliceArr()">add item</button><br><br>
+    </ul>
+    <br>
+    
+    <h3>Array filter() and reduce() methods</h3>
+
+    <ul>
+        <li>the use of filter here will create a new array from this array <br> [<mark id="old"></mark>] <br>
+            <br>[<mark id="new"></mark>]<br>
+        </li><br>
+        <button type="button" onclick="initial()">initial array</button>
+        <button type="button" onclick="filtered()">filter array</button><br><br>
+
+        <li>this button below will find the sum of all the numbers in the existing array with reduce() 
+            method = [<mark id="reduce"></mark>]
+        </li><br>
+        <button type="button" onclick="redux()">sum up the array</button><br><br>
+    </ul>
+    <br><br><br>
+
+    <h1>demonstrating the use of Array map</h1>
+
+    <ul>
+        <li>click to display an array map value of cars = [<mark id="cars"></mark>]
+        </li><br>
+        <button type="button" onclick="Cars()">map array</button><br><br>
+    </ul>
+    <br><br><br>
+
+    <h1>demonstrating the use of objects in javascript</h1>
+
+     <ul>
+        <li>click to display an object value of my details = <p>Mein name ist [<mark id="name"></mark>]</p>
+            <p>ich komme aus [<mark id="nationality"></mark>]</p> 
+            <p>ich bin funfundzwanzig(<mark id="age"></mark>) jahre alt</p>
+            <p>ich bin als ein [<mark id="occupation"></mark>] entwickler</p>
+        </li><br>
+        <button type="button" onclick="objects()">fill objects</button><br><br>
+    </ul>
+
+    <script>
+        //create an array of fruits
+        let fruits = ["apple ", "banana ", " cherry "];  //global scope
+        const arr = () => {
+            document.getElementById('arr').innerHTML= fruits;
+            console.log("fruits array :", fruits);
+        };
+        
+        //add a new item to the array
+        var push_cashew = fruits;
+        const pushArr = () => {
+            push_cashew.push("cashew");
+            document.getElementById('push').innerHTML= push_cashew;
+            console.log("you have added a new fruit", push_cashew);
+        };
+
+        //remove the first fruit in the array 
+        let shift_item = push_cashew;
+         const shiftArr = () => {
+            shift_item.shift();
+            document.getElementById('shift').innerHTML= shift_item;
+            console.log("You removed the first fruit item:", shift_item);
+        };
+
+
+         //loop through the array
+         function loopFruits() {
+            fruits.forEach(function(fruit,index) {
+            console.log("Fruit at index " + index + " is " + fruit);
+            document.getElementById('loop').innerHTML += '<br>'+"Fruit at index " + index + " is " + fruit + '<br>';
+        });
+}
+
+         // splice() array
+         const spliceArr = () => {
+            var splice_fruits = fruits;
+            splice_fruits.splice(1, 0, 'Guava ');
+            document.getElementById('splice').innerHTML= splice_fruits;
+            console.log("you just added another fruit with splice", splice_fruits);
+        };
+
+         //filter array
+         const initial = () => { 
+            initial_array = [0,10,20,30,40,50,60,70,80,90]; //#global array
+            console.log("the initial array is : ",initial_array);
+            document.getElementById('old').innerHTML = initial_array;
+         }
+
+         const filtered = () => {
+            let newfilter = initial_array.filter(myfunction);
+            function myfunction(value, index, array) { return value < 50 }
+            console.log('the new array is: ', newfilter);
+            document.getElementById('new').innerHTML = newfilter;
+         }
+
+         //reduce() array
+         const redux = () => {
+            let sum = initial_array.reduce(myfunction);
+            function myfunction(total, value, index, array) { return total + value; }
+            console.log('the sum total is: ', sum);
+            document.getElementById('reduce').innerHTML = sum;
+         }
+                       
+// demonstrating the use of map 
+         //create a map array of cars
+         const Cars = () => {
+            const cars = new Map ([["lexus", 250], ["mercedes", 200], ["ford", 100]]);
+         console.log("cars mapping :", cars.get("lexus"), cars.get("mercedes"), cars.get("ford"));
+         cars.forEach(function(value, key) {
+            document.getElementById('cars').innerHTML += '<br>'+ key + ' = ' + value + "<br>"
+         })
+         }
+         
+//demonstrating the knowledge of objects
+         //javascript objects
+         function objects() {
+            const obj = {
+                firstname: "Eustace",
+                lastname: "Mbanefo",
+                nationality: "Nigeria",
+                age        : "25",
+                occupation : "Frontend"
+            }
+            console.log('my name is ', obj.firstname + ' ' + obj.lastname);
+            document.getElementById('name').innerHTML = obj.firstname + ' ' + obj.lastname;
+            console.log('I come from ', obj.nationality);
+            document.getElementById('nationality').innerHTML = obj.nationality;
+            console.log('I am ', obj.age , ' years old');
+            document.getElementById('age').innerHTML = obj.age;
+            console.log('I am also a ', obj.occupation, 'Engineer');
+            document.getElementById('occupation').innerHTML = obj.occupation;
+         }
+ 
+    </script>
+</body>
+</html>
